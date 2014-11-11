@@ -27,6 +27,20 @@ class Subscribe:
         if func not in lst:
             lst.append(func)
 
+    def before_startup_once(self, func):
+        """
+            Called before Qtile has initialized, exactly once (i.e. not on each
+            lazy.restart()).
+        """
+        return self._subscribe("before_startup_once", func)
+
+    def before_startup(self, func):
+        """
+            Called each time before qtile is started
+            (including the first time qtile starts)
+        """
+        return self._subscribe("before_startup", func)
+
     def startup_once(self, func):
         """
             Called when Qtile has initialized, exactly once (i.e. not on each

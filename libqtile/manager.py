@@ -69,6 +69,10 @@ class Qtile(command.CommandObject):
 
         self.no_spawn = no_spawn
 
+        if not no_spawn:
+            hook.fire("before_startup_once")
+        hook.fire("before_startup")
+
         self._eventloop = asyncio.get_event_loop()
 
         if not displayName:
